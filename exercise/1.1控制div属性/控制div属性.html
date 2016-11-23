@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>控制div属性</title>
+<style>
+#outer{width:500px;margin:0 auto;padding:0;text-align:center;}
+#div1{width:100px;height:100px;background:black;margin:10px auto;display:block;}
+</style>
+<script>
+var change = function (e, attr, value)  //传参 
+{
+	e.style[attr] = value //誰的样式的值
+};
+window.onload = function () //加载的时候
+{
+	var oBtn = document.getElementsByTagName("input");  //返回带有指定标签名的对象的集合
+	var oDiv = document.getElementById("div1");
+	var oAtt = ["width","height","background","display","display"];
+	var oVal = ["300px","300px","blue","none","block"];
+
+	for (var i = 0; i < oBtn.length; i++)  //循环input的长度
+	{
+		oBtn[i].index = i; //input当前的i=i；
+		console.log(i);
+		oBtn[i].onclick = function ()
+		{
+			this.index == oBtn.length - 1 ;  //this的index == input当前的i
+			change(oDiv, oAtt[this.index], oVal[this.index])  // (elem, attr, value)
+		}	
+		console.log(i);
+	}
+};
+</script>
+</head>
+<body>
+<div id="con">
+<input type="button" value="变宽" />
+<input type="button" value="变高" />
+<input type="button" value="变色" />
+<input type="button" value="隐藏" />
+<input type="button" value="重置" />
+<div id="div1"></div>
+</div>
+</body>
+</html>
+

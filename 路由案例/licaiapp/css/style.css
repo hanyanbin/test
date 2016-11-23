@@ -1,0 +1,199 @@
+@import url("reset.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+html, body, .container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+.container {
+  display: -webkit-flex;
+  -webkit-flex-direction: column; }
+
+header {
+  width: 100%;
+  height: 49px;
+  background: #ed5858;
+  position: relative; }
+  header .p {
+    width: 97px;
+    height: 27.5px;
+    margin: 0 auto;
+    margin-top: 10px; }
+    header .p img {
+      width: 100%;
+      height: 100%; }
+  header .im {
+    width: 29px;
+    height: 28px;
+    display: inline-block;
+    margin-top: -14.5px;
+    position: absolute;
+    right: 15px;
+    top: 50%; }
+    header .im img {
+      width: 100%;
+      height: 100%; }
+
+section {
+  -webkit-flex: 1;
+  overflow: hidden; }
+
+.banner {
+  width: 100%;
+  height: 120px;
+  position: relative; }
+
+.swiper-wrapper {
+  display: -webkit-flex;
+  -webkit-flex-shrink: 0; }
+
+.swiper-slide {
+  width: 100%;
+  height: 100%; }
+  .swiper-slide img {
+    width: 100%;
+    height: 100%; }
+
+.pagination {
+  width: 35px;
+  height: 5px;
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  margin-left: -17.5px;
+  display: -webkit-flex;
+  -webkit-justify-content: space-between; }
+
+.swiper-pagination-switch {
+  height: 100%;
+  width: 5px;
+  background: #b27c00;
+  border-radius: 50%; }
+
+.swiper-active-switch {
+  background: #ff6600; }
+
+.mon {
+  padding: 19px 0;
+  font-size: 0;
+  border-bottom: 1px solid #ccc; }
+
+.le {
+  width: 50%;
+  display: inline-block;
+  border-right: 1px solid #ccc;
+  padding-left: 15px; }
+  .le p {
+    font-size: 12px;
+    color: #aaa; }
+  .le h6 {
+    font-size: 16px;
+    padding-top: 5px;
+    color: #ed5858; }
+    .le h6 i {
+      font-size: 11px; }
+
+.by {
+  width: 94%;
+  margin: 0 auto;
+  height: 113.5px;
+  background: url("../img/bg.png") no-repeat;
+  background-size: 100% 100%;
+  margin-top: 10px;
+  position: relative; }
+  .by .pos {
+    position: absolute;
+    width: 74px;
+    height: 26px;
+    background: #29b8e8;
+    color: #fff;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+    border-right: 1px dotted #fff;
+    border-left: 1px dotted #fff;
+    left: 0;
+    top: 0; }
+  .by .tm {
+    float: right;
+    padding-right: 12px;
+    font-size: 14px;
+    color: #aaa; }
+    .by .tm b {
+      font-weight: normal; }
+  .by .bm {
+    padding-top: 53px; }
+    .by .bm b {
+      padding-left: 10px;
+      font-size: 36px;
+      margin-right: 5px;
+      color: #ff8800;
+      font-weight: normal;
+      display: inline-block; }
+    .by .bm ul {
+      display: inline-block; }
+      .by .bm ul span {
+        color: #aaa;
+        font-size: 10px;
+        width: 85px;
+        display: inline-block;
+        text-align: left;
+        /*-----------------------------------------  */ }
+        .by .bm ul span i {
+          color: #222;
+          font-size: 16px; }
+      .by .bm ul .orange {
+        color: #ff8800; }
+  .by .shopping {
+    position: absolute;
+    right: 10px;
+    bottom: 10px; }
+    .by .shopping p {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      background: #ff6161;
+      color: #fff;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%; }
+    .by .shopping h6 {
+      font-size: 10px;
+      color: #666;
+      -webkit-transform: scale(0.83);
+      text-align: center;
+      padding-top: 10px; }
+
+.byt {
+  background: url("../img/bg2.png") no-repeat; }
+  .byt .o {
+    background: #ff8800; }
+
+footer {
+  width: 100%;
+  height: 46px;
+  background: #f7f7f7;
+  border-top: 1px solid #ccc;
+  font-size: 0; }
+  footer a {
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    font-size: 10px; }
+    footer a img {
+      width: 21.5px;
+      height: auto;
+      padding-top: 5;
+      padding-bottom: 3px; }
+  footer .active {
+    border-top: 1px solid #ed5858; }
+    footer .active img {
+      color: red; }
+    footer .active i {
+      color: #ed5858; }
+
+/*# sourceMappingURL=style.css.map */

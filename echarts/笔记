@@ -1,0 +1,224 @@
+1/			echarts.init Function
+(dom: HTMLDivElement|HTMLCanvasElement, theme?: Object|string, opts?: {
+    devicePixelRatio?: number
+    renderer?: string
+    width?: number|string
+    height? number|string
+}) => ECharts
+创建一个 ECharts 实例，返回 echartsInstance，不能再单个容器上初始化多个 ECharts 实例。
+参数
+dom
+实例容器，一般是一个具有高宽的div元素。
+注：如果div是隐藏的，ECharts 可能会获取不到div的高宽导致初始化失败，这时候可以明确指定div的style.width和style.height，或者在div显示后手动调用 echartsInstance.resize 调整尺寸。
+ECharts 3 中支持直接使用canvas元素作为容器，这样绘制完图表可以直接将 canvas 作为图片应用到其它地方，例如在 WebGL 中作为贴图，这跟使用 echartsInstance.getDataURL 生成图片链接相比可以支持图表的实时刷新。
+theme
+应用的主题。可以是一个主题的配置对象，也可以是使用已经通过 echarts.registerTheme 注册的主题名称。
+opts
+附加参数。有下面几个可选项：
+devicePixelRatio
+设备像素比，默认取浏览器的值window.devicePixelRatio。
+renderer
+渲染器，目前仅支持'canvas'。
+width
+可显式指定实例宽度，单位为像素。如果传入值为 null/undefined/'auto'，则表示自动取 dom（实例容器）的宽度。
+height
+可显式指定实例高度，单位为像素。如果传入值为 null/undefined/'auto'，则表示自动取 dom（实例容器）的高度。
+
+  基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+
+2、tooltip.trigger string
+	[ default: 'item' ]
+	触发类型。
+	可选：
+	'item'
+	数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+	'axis'
+	坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+	在 ECharts 2.x 中只支持类目轴上使用 axis trigger，在 ECharts 3 中支持在直角坐标系和极坐标系上的所有类型的轴。并且可以通过 axisPointer.axis 指定坐标轴。
+
+3、 toolbox: {   //工具栏。内置有导出图片，数据视图，动态类型切换，数据区域缩放，重置五个工具。
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+
+
+4、	markPoint: {  //显示最大最小值
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            
+     markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+     }  //显示平均值
+     
+     
+      markPoint: {
+                data: [
+                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                ]
+            },
+            
+5、 xAxis.type string
+	[ default: 'category' ]
+	坐标轴类型。
+	可选：
+	'value' 数值轴，适用于连续数据。
+	'category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。
+	'time' 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化，在刻度计算上也有所不同，例如会根据跨度的范围来决定使用月，星期，日还是小时范围的刻度。
+	'log' 对数轴。适用于对数数据。 
+
+
+6、xAxis.splitLine.show boolean
+	[ default: true ]
+	是否显示分隔线。默认数值轴显示，类目轴不显示。    
+
+
+
+7、 xAxis: [
+        {...}, // 第一个 xAxis
+        {...}, // 第二个 xAxis
+        {...}, // 第三个 xAxis
+        {...}  // 第四个 xAxis
+    ],
+    dataZoom: [
+        { // 第一个 dataZoom 组件
+            xAxisIndex: [0, 2] // 表示这个 dataZoom 组件控制 第一个 和 第三个 xAxis
+        },
+        { // 第二个 dataZoom 组件
+            xAxisIndex: 3      // 表示这个 dataZoom 组件控制 第四个 xAxis
+        }
+    ]
+
+
+ 8、when().done()的方法需要队列中所有的方法都成功执行后才执行，
+
+
+ 9、tooltip.formatter string, Function
+	提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+	字符串模板。
+	模板变量有 {a}, {b}，{c}，{d}，{e}，分别表示系列名，数据名，数据值等。 在 trigger 为 'axis' 的时候，会有多个系列的数据，此时可以通过 {a0}, {a1}, {a2} 这种后面加索引的方式表示系列的索引。 不同图表类型下的 {a}，{b}，{c}，{d} 含义不一样。 其中变量{a}, {b}, {c}, {d}在不同图表类型下代表数据含义为：
+	折线（区域）图、柱状（条形）图、K线图 : {a}（系列名称），{b}（类目值），{c}（数值）, {d}（无）
+	散点图（气泡）图 : {a}（系列名称），{b}（数据名称），{c}（数值数组）, {d}（无）
+	地图 : {a}（系列名称），{b}（区域名称），{c}（合并数值）, {d}（无）
+	饼图、仪表盘、漏斗图: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+	更多其它图表模板变量的含义可以见相应的图表的 label.normal.formatter 配置项。
+	示例：
+	formatter: '{b0}: {c0}<br />{b1}: {c1}'
+
+
+	************	移动端
+
+	 emphasis: {   //是否在高亮状态下显示标签。
+
+	要在 option 中设置 Media Query 须遵循如下格式：
+
+		option = {
+		    baseOption: { // 这里是基本的『原子option』。
+		        title: {...},
+		        legend: {...},
+		        series: [{...}, {...}, ...],
+		        ...
+		    },
+		    media: [ // 这里定义了 media query 的逐条规则。
+		        {
+		            query: {..
+		            	
+
+		            
+		            },   // 这里写规则。
+		            option: {       // 这里写此规则满足下的option。
+		                legend: {...},
+		                ...
+		            }
+		        },
+		        {
+		            query: {...},   // 第二个规则。
+		            option: {       // 第二个规则对应的option。
+		                legend: {...},
+		                ...
+		            }
+		        },
+		        {                   // 这条里没有写规则，表示『默认』，
+		            option: {       // 即所有规则都不满足时，采纳这个option。
+		                legend: {...},
+		                ...
+		            }
+		        }
+		    ]
+		};
+
+	************例子：
+				media: [
+		    ...,
+		    {
+		        query: {
+		            maxAspectRatio: 1           // 当长宽比小于1时。
+		        },
+		        option: {
+		            legend: {                   // legend 放在底部中间。
+		                right: 'center',
+		                bottom: 0,
+		                orient: 'horizontal'    // legend 横向布局。
+		            },
+		            series: [                   // 两个饼图左右布局。
+		                {
+		                    radius: [20, '50%'],
+		                    center: ['50%', '30%']
+		                },
+		                {
+		                    radius: [30, '50%'],
+		                    center: ['50%', '70%']
+		                }
+		            ]
+		        }
+		    },
+		    {
+		        query: {
+		            maxWidth: 500               // 当容器宽度小于 500 时。
+		        },
+		        option: {
+		            legend: {
+		                right: 10,              // legend 放置在右侧中间。
+		                top: '15%',
+		                orient: 'vertical'      // 纵向布局。
+		            },
+		            series: [                   // 两个饼图上下布局。
+		                {
+		                    radius: [20, '50%'],
+		                    center: ['50%', '30%']
+		                },
+		                {
+		                    radius: [30, '50%'],
+		                    center: ['50%', '75%']
+		                }
+		            ]
+		        }
+		    },
+		    ...
+		]
+
+		timeline 组件，提供了在多个 ECharts option 间进行切换、播放等操作的功能。
+
+
+
+		*****************yAxis.axisLabel.interval
+		
+		[ default: 'auto' ]
+		坐标轴刻度标签的显示间隔，在类目轴中有效。
+		默认会采用标签不重叠的策略间隔显示标签。
+		可以设置成 0 强制显示所有标签。
+		如果设置为 1，表示『隔一个标签显示一个标签』，如果值为 2，表示隔两个标签显示一个标签，以此类推。

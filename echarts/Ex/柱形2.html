@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+	 <div id="main" style="width: 600px;height:400px;"></div>
+  	<script>
+  	var myChart=echarts.init(document.getElementById("main"));
+  	
+  	var option={
+  		color: ['#3398DB'],
+  		title:{
+  			text:'ECharts 入门示例'
+  		},
+  		
+  		tooltip:{
+  			show:'ture',
+  			 trigger:'axis',
+  			  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		        }
+  		},
+  		grid: {   //直角坐标系内绘图网格 距离的位置 定位 
+			        left: '3%',
+			        right: '4%',
+			        bottom: '3%',
+			        containLabel: true,  //grid 区域是否包含坐标轴的刻度标签，在无法确定坐标轴标签的宽度，容器又比较小无法预留较多空间的时候，可以设为 true 防止标签溢出容器
+			        show:'ture'
+			    },
+  		 legend: {   //图例组件
+                data:['销量'],
+                  align: 'center'
+      			 // left: 10
+            },
+         brush: {  //是区域选择组件，用户可以选择图中一部分数据，从而便于向用户展示被选中数据，或者他们的一些统计计算结果。
+		        toolbox: ['rect', 'polygon', 'lineX', 'lineY', 'keep', 'clear'],
+		        xAxisIndex: 0
+		    },
+		toolbox: {  //工具栏
+	        feature: {  //各工具配置项
+	            magicType: {  //动态类型切
+	                type: ['stack', 'tiled']
+	            },
+	            dataView: {}  //数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新。
+	        }
+   		 },
+   		  visualMap: {  //visualMap 是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
+	        type: 'continuous',
+	        dimension: 1,
+	        text: ['High', 'Low'],
+	        inverse: true,  //是否反转 visualMap 组件。
+	        itemHeight: 200,
+	        calculable: true,  //是否显示拖拽用的手柄（手柄能拖拽调整选中范围）。
+	        min: 1,
+	        max: 6,
+	        top: 60,
+	        right: -10,
+	        inRange: {   //定义 在选中范围中 的视觉元素
+	            colorLightness: [0.4, 0.8]
+	        },
+	        outOfRange: {
+	            color: '#bbb'
+	        },
+	        controller: {
+	            inRange: {
+	                color: '#2f4554'
+	            }
+	        }
+	    },
+  		xAxis:{
+  			data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],  			
+  			 axisTick: {
+                alignWithLabel: true , //类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。如下图：
+                show:false
+           },
+            axisLabel: {
+           
+	            textStyle: {
+	                color: '#000'
+	            }
+       		 },
+  		},
+  		yAxis:{
+  			   inverse: false,  // 是否是反向坐标轴。ECharts 3 中新加。
+       			 splitArea: {show: false}  //是否显示分隔区域。
+  		},
+  		series:[{
+  			name:'销量',
+  			type:'bar',
+  			barWidth: '60%',
+  			 data: [5, 20, 36, 10, 10, 20]
+  		}]  	
+  	};  	
+  	myChart.setOption(option);
+    </script>
+</body>
+</html>
+
+	

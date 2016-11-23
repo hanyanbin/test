@@ -1,0 +1,58 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="UTF-8">  
+        <title>echarts-JSON请求数据</title>        
+    </head>  
+    <body>  
+        <div id="chart" style="width: 500px; height: 500px;"></div>  
+    </body> 
+    <script src="../echarts.min.js"></script>
+    <script src="../jquery-1.10.1.min.js"></script>
+       <script>  
+            $(document).ready(function(){  
+                var chart = document.getElementById('chart');  
+                var mycharts = echarts.init(chart);  
+      
+                mycharts.setOption({  
+                    title: {  
+                        text: '异步数据加载示例'  
+                    },  
+                    tooltip: {},  
+                    legend: {  
+                        data:['销量']  
+                    },  
+                   
+                    series: [{  
+                        name: '销量',  
+                        type: 'pie',  
+                        data: []  
+                    }]  
+                });  
+                  
+                $.get('data.json').done(function (data) {  
+                      
+                    console.dir(data);  
+                    // 填入数据  
+                    mycharts.setOption({  
+                        xAxis: {  
+                            data: data.categories  
+                        },  
+                        series: [{  
+                            name: '销量',  
+                            data: data.data  
+                        }]  
+                    });  
+                  
+                });  
+                  
+                function eConsole(param)   
+                {  
+                    console.dir(param);  
+                }  
+                  
+                mycharts.on("click",eConsole);  
+            });  
+  
+        </script> 
+</html> 

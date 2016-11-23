@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 宽度为设备宽度，初始缩放比例为一，用户最小最大缩放比例为一，不允许用户手机缩放 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<!-- 禁止iOS设备将数字作为拨号连接、邮箱自动发送，点击地图跳转 -->
+	<meta name="format-detection" content="telephone=no,email=no,adress=no">
+	<!-- 强制全屏显示 -->
+	<meta name="full-screen" content="yes">
+	<!-- 开启对webapp的支持 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- webapp应用下状态条(平模顶部条)的颜色，默认值为default(白色或黑色半透明) -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<!-- 禁止浏览器从缓存中访问页面内容 -->
+	<meta http-epuiv="Pragma" content="no-cache">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="p">
+				<img src="img/logo1.png">
+			</div>
+			<span class="im"><img src="img/Listen.png"></span>
+		</header>
+		<section id="main">
+			<div class="iscroll">
+				<div class="banner swiper-container" ng-controller="scrollCtrl">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide"><img src="img/banner.png" alt=""></li>
+						<li class="swiper-slide"><img src="img/banner.png" alt=""></li>
+						<li class="swiper-slide"><img src="img/banner.png" alt=""></li>
+						<li class="swiper-slide"><img src="img/banner.png" alt=""></li>
+					</ul>
+					<div class="pagination"></div>
+				</div>
+				<div class="mon">
+					<div class="le">
+						<p>累计成交金额</p>
+						<h6>29,089.80<i>万元</i></h6>
+					</div>
+					<div class="le">
+						<p>累计成交金额</p>
+						<h6>29,089.80<i>万元</i></h6>
+					</div>
+				</div>
+				<div class="by">
+					<span class="pos">押车宝</span>
+					<p class="tm">汽车供应链第<b>75</b>期</p>
+					<div class="bm">
+						<b>12</b>
+						<ul>
+							<li><span>年化收益</span><span>期限</span></li>
+							<li><span class="orange">.0%</span><span><i>3</i>个月</span></li>
+						</ul>
+					</div>
+					<div class="shopping">
+						<p>抢购</p>
+						<h6>163人购买</h6>
+					</div>
+				</div>
+				<div class="byt by">
+					<span class="pos o">流水宝</span>
+					<p class="tm">餐饮供应链第<b>73</b>期</p>
+					<div class="bm">
+						<b>14</b>
+						<ul>
+							<li><span>年化收益</span><span>期限</span></li>
+							<li><span class="orange">.0%</span><span><i>15</i>天</span></li>
+						</ul>
+					</div>
+					<div class="shopping">
+						<p>抢购</p>
+						<h6>163人购买</h6>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- <footer>
+			<a class="active" href="javascript:;"><img src="img/f_home.jpg"><br><i>首页</i></a>
+			<a href="javascript:;"><img src="img/money.jpg"><br><i>理财产品</i></a>
+			<a href="javascript:;"><img src="img/me.jpg"><br><i>我的账户</i></a>
+			<a href="javascript:;"><img src="img/dian.jpg"><br><i>更多</i></a>
+		</footer> -->
+	</div>
+</body>
+</html>

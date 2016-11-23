@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<script src="echarts.min.js"></script>
+	<title>扇形</title>
+</head>
+<body>
+	 <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        
+        	option = {
+    backgroundColor: '#2c343c',  //
+    visualMap: {		//是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
+        show: false,  //是否显示 visualMap-continuous 组件。 连续的柱状
+        min: 80,		//控制视觉元素的最小值
+        max: 600,		//控制视觉元素的最小值
+        inRange: {  //视觉元素
+            colorLightness: [0, 1]
+        }
+    },
+    series : [   
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',  //控制圆的大小
+            data:[    //控制元素的多少  值和名字
+                {value:235, name:'视频广告'},
+                {value:274, name:'联盟广告'},
+                {value:310, name:'邮件营销'},
+                {value:335, name:'直接访问'},
+                {value:400, name:'搜索引擎'}
+            ],
+            roseType: 'angle', //
+            label: {   //控制name
+                normal: {   
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+            labelLine: { //控制name的链接线样式
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+            itemStyle: {
+                normal: {  //emphasis 高粱 而且各个字和图像的颜色分别一样
+                    color: '#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}; 
+         
+         myChart.setOption(option);
+    </script>
+</body>
+</html>
+
+
+<!--
+	visualMap[i]-continuous.inRange Object
+定义 在选中范围中 的视觉元素。（用户可以和 visualMap 组件交互，用鼠标或触摸选择范围）
+可选的视觉元素有：
+symbol: 图元的图形类别。
+symbolSize: 图元的大小。
+color: 图元的颜色。
+colorAlpha: 图元的颜色的透明度。
+opacity: 图元以及其附属物（如文字标签）的透明度。
+colorLightness: 颜色的明暗度，参见 HSL。
+colorSaturation: 颜色的饱和度，参见 HSL。
+colorHue: 颜色的色调，参见 HSL。
+	
+-->

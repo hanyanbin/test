@@ -1,0 +1,74 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="UTF-8">  
+        <title>echarts-JSON请求数据</title>        
+    </head>  
+    <body>  
+        <div id="chart" style="width: 500px; height: 500px;"></div>  
+    </body> 
+    <script src="../echarts.min.js"></script>
+    <script src="../jquery-1.10.1.min.js"></script>
+       <script>  
+            $(document).ready(function(){  
+                var chart = document.getElementById('chart');  
+                var mycharts = echarts.init(chart);  
+      
+                mycharts.setOption({  
+                    title: {  
+                        text: '异步数据加载示例'  
+                    },  
+                    tooltip: {},  
+                    legend: {  
+                        data:['销量']  
+                    },  
+                    xAxis: {  
+                        data: []  
+                    },  
+                    yAxis:[
+				        {
+				            type : 'value'
+				        }
+				    ],
+                    series: [{  
+                        name: '销量',  
+                        type: 'bar',  
+                        data: []  
+                    }]  
+                });  
+                  
+                $.get('data1.json').done(function (data) {  
+                      
+                   // console.log(data);  
+                   //  console.log(data.length);  
+                   var name=[];
+                   var xiaoliang=[];                 
+                    for( var i=0;i<data.length;i++){                    	
+                    	 name.push(data[i].name);
+                    	 xiaoliang.push(data[i].xiaoliang);
+                    }
+                    	
+                    	
+                    // 填入数据  
+                    mycharts.setOption({  
+                        xAxis: {  
+                            data: name
+                        },  
+                        series: [{  
+                            name: '销量',  
+                            data: xiaoliang
+                        }]  
+                    });  
+                  
+                });  
+                  
+                function eConsole(param)   
+                {  
+                    console.log(param);  
+                }  
+                  
+                mycharts.on("click",eConsole);  
+            });  
+  
+        </script> 
+</html> 

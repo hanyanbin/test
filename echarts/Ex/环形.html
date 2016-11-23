@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+	 <div id="main" style="width: 600px;height:400px;"></div>
+  	<script>
+  	var myChart=echarts.init(document.getElementById("main"));
+  	
+  	
+
+	var option = {
+		    tooltip: {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b}: {c} ({d}%)"
+		        //饼图、仪表盘、漏斗图formatter: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+		    },
+		    legend: {
+		        orient: 'vertical', //图例列表的布局朝向。
+		        x: 'left',
+		        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+		    },
+		    series: [
+		    		
+		        {
+		            name:'访问来源',
+		            type:'pie',
+		            radius: ['50%', '70%'],
+		            avoidLabelOverlap: false,
+		            label: {
+		                normal: {
+		                    show: false,
+		                    position: 'center'
+		                },
+		                emphasis: {  //在中学显示位子
+		                    show: true,
+		                    textStyle: {
+		                        fontSize: '30',
+		                        fontWeight: 'bold'
+		                    }
+		                }
+		            },
+		            labelLine: {  ///控制name的链接线样式
+		                normal: {
+		                    show: false
+		                }
+		            },
+		            data:[
+		                {value:335, name:'直接访问'},
+		                {value:310, name:'邮件营销'},
+		                {value:234, name:'联盟广告'},
+		                {value:135, name:'视频广告'},
+		                {value:1548, name:'搜索引擎'}
+		            ]
+		        }
+		    ]
+		};
+
+  	myChart.setOption(option);
+    </script>
+</body>
+</html>
+
+	
